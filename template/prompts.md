@@ -12,4 +12,4 @@ Generate the files separately, which means: HTML, Javascript and CSS files if ne
 Notas:
 
 1. En el prompt agregué la imagen de la carpeta res/reverstring-example.png como guia.
-2. El resultado fue perfecto excepto porque estaba renderizando el tema oscuro, y el input field no se veia bien, pero solamente tuve que decirle: `The colors are dark and the input is not correct. Fix it` y le pase el screenshot para que pudiera ver el problema visual.
+2. El resultado fue perfecto excepto porque estaba renderizando el tema oscuro, y el input field no se veía bien, pero solamente tuve que decirle: `The colors are dark and the input is not correct. Fix it` y le pase el screenshot para que pudiera ver el problema visual.

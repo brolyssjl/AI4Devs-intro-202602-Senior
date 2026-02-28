@@ -137,7 +137,7 @@ clearBtn.addEventListener('click', clearAll);
 
 // Keyboard shortcut: Ctrl/Cmd + Shift + C → copy
 document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'c') {
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'c') {
     e.preventDefault();
     copyResult();
   }
