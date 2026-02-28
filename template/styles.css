@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap');
+
+/* ─── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:           #eef2ff;
+  --surface:      #ffffff;
+  --surface-2:    #f7f8fc;
+  --border:       #dde2f0;
+  --border-focus: #4361ee;
+  --accent:       #4361ee;
+  --accent-hover: #2f4dd4;
+  --accent-light: rgba(67,97,238,0.09);
+  --text:         #111827;
+  --muted:        #8a94a6;
+  --success:      #22c55e;
+  --danger:       #ef4444;
+  --radius:       12px;
+  --mono:         'Space Mono', monospace;
+  --display:      'Syne', sans-serif;
+  --transition:   0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Materialize Input Overrides ──────────────────────────── */
+/* Materialize forces a bottom-border-only style on all text inputs.
+   We reset that completely so our custom box-style input shows correctly. */
+input[type=text]:not(.browser-default),
+input:not([type]):not(.browser-default) {
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input:not([type]):not(.browser-default):focus:not([readonly]) {
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* ─── Body ──────────────────────────────────────────────────── */
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 75% 15%, rgba(67,97,238,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 35% at 20% 85%, rgba(124,58,237,0.06) 0%, transparent 55%);
+  font-family: var(--display);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* ─── Card ──────────────────────────────────────────────────── */
+.card {
+  width: 100%;
+  max-width: 620px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px 44px 40px;
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.06),
+    0 8px 24px rgba(67,97,238,0.1),
+    0 24px 64px rgba(67,97,238,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* gradient top bar */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4361ee 0%, #7c3aed 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+/* ─── Header ────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.header-text h1 {
+  font-family: var(--display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.header-text h1 span {
+  color: var(--accent);
+}
+
+.header-text p {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.badge {
+  background: #eff2ff;
+  border: 1px solid #c7d2fe;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* ─── Input group ───────────────────────────────────────────── */
+.input-group {
+  margin-bottom: 8px;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+/* Custom input — box style, fully overrides Materialize */
+#inputText {
+  display: block !important;
+  width: 100% !important;
+  background: var(--surface-2) !important;
+  border: 1.5px solid var(--border) !important;
+  border-bottom: 1.5px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  color: var(--text) !important;
+  font-family: var(--mono) !important;
+  font-size: 0.98rem !important;
+  padding: 13px 46px 13px 16px !important;
+  outline: none !important;
+  height: auto !important;
+  line-height: 1.5 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+  caret-color: var(--accent);
+}
+
+#inputText::placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+#inputText:focus {
+  border-color: var(--border-focus) !important;
+  border-bottom-color: var(--border-focus) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px var(--accent-light) !important;
+}
+
+.input-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+#inputText:focus ~ .input-icon {
+  color: var(--accent);
+}
+
+.char-count {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+  transition: color var(--transition);
+}
+
+.char-count.has-text {
+  color: var(--accent);
+}
+
+/* ─── Arrow divider ─────────────────────────────────────────── */
+.arrow-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.arrow-divider::before,
+.arrow-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.arrow-divider .arrow-icon {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Result ────────────────────────────────────────────────── */
+.result-label {
+  display: block;
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.result-box {
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 13px 40px 13px 16px;
+  min-height: 52px;
+  font-family: var(--mono);
+  font-size: 0.98rem;
+  color: var(--accent);
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+.result-box.has-result {
+  border-color: #c7d2fe;
+  background: #f5f7ff;
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+#resultText {
+  flex: 1;
+}
+
+#resultText.flash {
+  animation: flash-anim 0.18s ease;
+}
+
+@keyframes flash-anim {
+  0%   { opacity: 0.15; }
+  100% { opacity: 1; }
+}
+
+.result-placeholder {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.88rem;
+}
+
+.live-dot {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.result-box.has-result .live-dot {
+  opacity: 1;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(67,97,238,0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(67,97,238,0); }
+}
+
+/* ─── Actions ───────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    transform 0.12s,
+    box-shadow var(--transition);
+}
+
+.btn:active { transform: scale(0.96); }
+
+/* Copy — filled blue */
+.btn-copy {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-copy:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 16px rgba(67,97,238,0.35);
+}
+
+.btn-copy:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-copy.copied {
+  background: var(--success);
+  color: #fff;
+}
+
+/* Clear — outlined red */
+.btn-clear {
+  background: transparent;
+  color: var(--danger);
+  border: 1.5px solid rgba(239,68,68,0.35);
+}
+
+.btn-clear:hover:not(:disabled) {
+  background: rgba(239,68,68,0.05);
+  border-color: var(--danger);
+}
+
+.btn-clear:disabled {
+  color: var(--muted);
+  border-color: var(--border);
+  cursor: not-allowed;
+}
+
+/* ─── Stats bar ─────────────────────────────────────────────── */
+.stats-bar {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0f4ff;
+  border: 1px solid #dde2f0;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.stat-pill strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .card {
+    padding: 36px 20px 28px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .header-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
